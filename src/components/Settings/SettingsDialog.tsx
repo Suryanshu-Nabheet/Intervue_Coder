@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -10,7 +9,6 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Settings, Server, Cpu } from "lucide-react";
 import { useToast } from "../../contexts/toast";
 
 type APIProvider = "openai" | "gemini" | "anthropic" | "openrouter" | "ollama";
@@ -238,7 +236,7 @@ export function SettingsDialog({
     } else if (provider === "ollama") {
       setExtractionModel("llama3.2-vision");
       setSolutionModel("deepseek-r1");
-      setDebuggingModel("deepseek-r1");
+      setDebuggingModel("llama3.2-vision");
     }
   };
 
@@ -274,10 +272,6 @@ export function SettingsDialog({
   const maskApiKey = (key: string) => {
     if (!key || key.length < 10) return "";
     return `${key.substring(0, 4)}...${key.substring(key.length - 4)}`;
-  };
-
-  const openExternalLink = (url: string) => {
-    window.electronAPI.openLink(url);
   };
 
   return (

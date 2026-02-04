@@ -175,9 +175,11 @@ export class ConfigHelper extends EventEmitter {
           updates.solutionModel = "google/gemini-2.0-flash-001";
           updates.debuggingModel = "google/gemini-2.0-flash-001";
         } else if (updates.apiProvider === "ollama") {
-          updates.extractionModel = "llama3.2-vision";
-          updates.solutionModel = "deepseek-r1";
-          updates.debuggingModel = "deepseek-r1";
+          if (!updates.extractionModel)
+            updates.extractionModel = "llama3.2-vision";
+          if (!updates.solutionModel) updates.solutionModel = "deepseek-r1";
+          if (!updates.debuggingModel)
+            updates.debuggingModel = "llama3.2-vision";
         }
       }
 
